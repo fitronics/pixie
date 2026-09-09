@@ -42,7 +42,7 @@ class Connection
      * @param null|string   $alias
      * @param Container     $container
      */
-    public function __construct($adapter, array $adapterConfig, $alias = null, Container $container = null)
+    public function __construct($adapter, array $adapterConfig, $alias = null, ?Container $container = null)
     {
         $container = $container ? : new Container();
 

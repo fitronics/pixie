@@ -38,6 +38,16 @@ class QueryBuilderHandler
     protected $tablePrefix = null;
 
     /**
+     * @var string
+     */
+    protected $adapter;
+
+    /**
+     * @var array
+     */
+    protected $adapterConfig;
+
+    /**
      * @var \Pixie\QueryBuilder\Adapters\BaseAdapter
      */
     protected $adapterInstance;
@@ -55,7 +65,7 @@ class QueryBuilderHandler
      * @param int $fetchMode
      * @throws Exception
      */
-    public function __construct(Connection $connection = null, $fetchMode = PDO::FETCH_OBJ)
+    public function __construct(?Connection $connection = null, $fetchMode = PDO::FETCH_OBJ)
     {
         if (is_null($connection)) {
             if (!$connection = Connection::getStoredConnection()) {
@@ -113,7 +123,7 @@ class QueryBuilderHandler
      * @return QueryBuilderHandler
      * @throws Exception
      */
-    public function newQuery(Connection $connection = null)
+    public function newQuery(?Connection $connection = null)
     {
         if (is_null($connection)) {
             $connection = $this->connection;
